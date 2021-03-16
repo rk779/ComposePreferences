@@ -61,5 +61,14 @@ internal fun PreferenceItem(
                 onClick = item.onClick,
             )
         }
+        is DropDownMenuPreference -> {
+            DropDownPreferenceWidget(
+                preference = item,
+                value = prefs?.get(item.request.key) ?: item.request.defaultValue,
+                onValueChange = { newValue ->
+                    scope.launch { dataStoreManager.editPreference(item.request.key, newValue) }
+                }
+            )
+        }
     }
 }
