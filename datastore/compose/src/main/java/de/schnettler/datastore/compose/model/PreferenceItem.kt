@@ -68,6 +68,16 @@ sealed class BasePreferenceItem() {
             val valueRepresentation: (Float) -> String
         ) : PreferenceItem<Float>()
 
+        data class DropDownMenuPreferenceItem(
+            override val metaData: PreferenceMetaData<String>,
+            override val title: String,
+            override val summary: String,
+            override val singleLineTitle: Boolean,
+            override val icon: ImageVector,
+            override val enabled: Boolean = true,
+
+            val entries: Map<String, String>,
+        ) : PreferenceItem<String>()
     }
 
     data class PreferenceGroup(

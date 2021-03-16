@@ -45,6 +45,17 @@ class MainActivity : AppCompatActivity() {
                         "key2" to "Item2"
                     ),
                 ),
+                BasePreferenceItem.PreferenceItem.DropDownMenuPreferenceItem(
+                    metaData = Settings.DropMenuPrefExample,
+                    title = "DropDown Menu Preference",
+                    summary = "Select an item from a dropdown menu",
+                    singleLineTitle = true,
+                    icon = Icons.Outlined.Warning,
+                    entries = mapOf(
+                        "key1" to "Item1",
+                        "key2" to "Item2"
+                    )
+                )
             )
         )
 

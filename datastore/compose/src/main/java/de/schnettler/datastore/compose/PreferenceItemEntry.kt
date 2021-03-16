@@ -31,7 +31,8 @@ fun PreferenceItemEntry(item: PreferenceItem<*>, prefs: Preferences?) {
                 value = prefs?.get(item.metaData.dataStoreKey) ?: item.metaData.defaultValue,
                 onValueChanged = { newValue ->
                     scope.launch { dataStore.editPreference(item.metaData, newValue) }
-                })
+                }
+            )
         }
         is CheckBoxListPreferenceItem -> {
             MultiSelectListPreference(
@@ -55,6 +56,15 @@ fun PreferenceItemEntry(item: PreferenceItem<*>, prefs: Preferences?) {
             Preference(
                 item = item,
                 onClick = item.onClick,
+            )
+        }
+        is DropDownMenuPreferenceItem -> {
+            DropDownMenuPreference(
+                item = item,
+                value = prefs?.get(item.metaData.dataStoreKey) ?: item.metaData.defaultValue,
+                onValueChanged = { newValue ->
+                    scope.launch { dataStore.editPreference(item.metaData, newValue) }
+                }
             )
         }
     }

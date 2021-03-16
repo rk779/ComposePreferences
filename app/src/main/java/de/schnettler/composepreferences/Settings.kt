@@ -12,4 +12,5 @@ sealed class Settings<T>(
     object ListPrefExample: Settings<String>("pref_list", "", ::stringPreferencesKey)
     object MultiPrefExample: Settings<Set<String>>("pref_multi_list", emptySet(), ::stringSetPreferencesKey)
     object SeekPrefExample: Settings<Float>("pref_seek", 50F, ::floatPreferencesKey)
+    object DropMenuPrefExample: Settings<String>("pref_dropDown", "", ::stringPreferencesKey)
 }
