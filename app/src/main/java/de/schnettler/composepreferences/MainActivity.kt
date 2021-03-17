@@ -3,18 +3,22 @@ package de.schnettler.composepreferences
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
+import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Warning
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import de.schnettler.composepreferences.ui.ComposePreferencesTheme
 import de.schnettler.datastore.compose.PreferenceScreen
+import de.schnettler.datastore.compose.ProvideDataStoreManager
 import de.schnettler.datastore.compose.model.BasePreferenceItem
 import de.schnettler.datastore.manager.DataStoreManager
-import de.schnettler.datastore.compose.ProvideDataStoreManager
 import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
@@ -28,7 +32,13 @@ class MainActivity : AppCompatActivity() {
                     title = "List Preference",
                     summary = "Select one item from a list in a dialog",
                     singleLineTitle = true,
-                    icon = Icons.Outlined.Warning,
+                    icon = {
+                        Icon(
+                            imageVector = Icons.Outlined.Warning,
+                            contentDescription = null,
+                            modifier = Modifier.padding(8.dp)
+                        )
+                    },
                     entries = mapOf(
                         "key1" to "Item1",
                         "key2" to "Item2"
@@ -39,7 +49,13 @@ class MainActivity : AppCompatActivity() {
                     title = "MultiSelect List Preference",
                     summary = "Select multiple items from a list in a dialog",
                     singleLineTitle = true,
-                    icon = Icons.Outlined.Warning,
+                    icon = {
+                        Icon(
+                            imageVector = Icons.Outlined.Warning,
+                            contentDescription = null,
+                            modifier = Modifier.padding(8.dp)
+                        )
+                    },
                     entries = mapOf(
                         "key1" to "Item1",
                         "key2" to "Item2"
@@ -50,7 +66,13 @@ class MainActivity : AppCompatActivity() {
                     title = "DropDown Menu Preference",
                     summary = "Select an item from a dropdown menu",
                     singleLineTitle = true,
-                    icon = Icons.Outlined.Warning,
+                    icon = {
+                        Icon(
+                            imageVector = Icons.Outlined.Warning,
+                            contentDescription = null,
+                            modifier = Modifier.padding(8.dp)
+                        )
+                    },
                     entries = mapOf(
                         "key1" to "Item1",
                         "key2" to "Item2"
@@ -76,7 +98,13 @@ class MainActivity : AppCompatActivity() {
                                         title = "Switch Preference",
                                         summary = "A preference with a switch.",
                                         singleLineTitle = true,
-                                        icon = Icons.Outlined.Warning,
+                                        icon = {
+                                            Icon(
+                                                imageVector = Icons.Outlined.Warning,
+                                                contentDescription = null,
+                                                modifier = Modifier.padding(8.dp)
+                                            )
+                                        }
                                     ),
                                     listGroup,
                                     BasePreferenceItem.PreferenceItem.SeekBarPreferenceItem(
@@ -84,7 +112,13 @@ class MainActivity : AppCompatActivity() {
                                         title = "Seekbar Preference",
                                         summary = "Select a value on a seekbar",
                                         singleLineTitle = true,
-                                        icon = Icons.Outlined.Warning,
+                                        icon = {
+                                            Icon(
+                                                imageVector = Icons.Outlined.Warning,
+                                                contentDescription = null,
+                                                modifier = Modifier.padding(8.dp)
+                                            )
+                                        },
                                         steps = 4,
                                         valueRange = 50F..100F,
                                         valueRepresentation = { value -> "${value.roundToInt()} %" }

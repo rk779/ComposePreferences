@@ -1,6 +1,6 @@
 package de.schnettler.datastore.compose.model
 
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.runtime.Composable
 import de.schnettler.datastore.manager.PreferenceMetaData
 
 sealed class BasePreferenceItem() {
@@ -11,14 +11,14 @@ sealed class BasePreferenceItem() {
         abstract val metaData: PreferenceMetaData<T>
         abstract val summary: String
         abstract val singleLineTitle: Boolean
-        abstract val icon: ImageVector
+        abstract val icon: @Composable () -> Unit
 
         data class BasicPreferenceItem(
             override val metaData: PreferenceMetaData<String>,
             override val title: String,
             override val summary: String,
             override val singleLineTitle: Boolean,
-            override val icon: ImageVector,
+            override val icon: @Composable () -> Unit,
             override val enabled: Boolean = true,
 
             val onClick: () -> Unit = {}
@@ -29,7 +29,7 @@ sealed class BasePreferenceItem() {
             override val title: String,
             override val summary: String,
             override val singleLineTitle: Boolean,
-            override val icon: ImageVector,
+            override val icon: @Composable () -> Unit,
             override val enabled: Boolean = true,
         ) : PreferenceItem<Boolean>()
 
@@ -38,7 +38,7 @@ sealed class BasePreferenceItem() {
             override val title: String,
             override val summary: String,
             override val singleLineTitle: Boolean,
-            override val icon: ImageVector,
+            override val icon: @Composable () -> Unit,
             override val enabled: Boolean = true,
 
             val entries: Map<String, String>,
@@ -49,7 +49,7 @@ sealed class BasePreferenceItem() {
             override val title: String,
             override val summary: String,
             override val singleLineTitle: Boolean,
-            override val icon: ImageVector,
+            override val icon: @Composable () -> Unit,
             override val enabled: Boolean = true,
 
             val entries: Map<String, String>,
@@ -60,7 +60,7 @@ sealed class BasePreferenceItem() {
             override val title: String,
             override val summary: String,
             override val singleLineTitle: Boolean,
-            override val icon: ImageVector,
+            override val icon: @Composable () -> Unit,
             override val enabled: Boolean = true,
 
             val valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
@@ -73,7 +73,7 @@ sealed class BasePreferenceItem() {
             override val title: String,
             override val summary: String,
             override val singleLineTitle: Boolean,
-            override val icon: ImageVector,
+            override val icon: @Composable () -> Unit,
             override val enabled: Boolean = true,
 
             val entries: Map<String, String>,
