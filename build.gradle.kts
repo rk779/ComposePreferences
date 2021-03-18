@@ -2,8 +2,7 @@ buildscript {
 
     repositories {
         google()
-        jcenter()
-        maven { url = uri("https://dl.bintray.com/kotlin/kotlin-eap") }
+        mavenCentral()
     }
 
     dependencies {
@@ -13,10 +12,15 @@ buildscript {
 }
 
 allprojects {
+
     repositories {
         google()
-        jcenter()
+        mavenCentral()
         maven { url = uri("https://jitpack.io") }
+        // kotlinx-collections-immutable-jvm used by Compose is stored here.
+        maven("https://dl.bintray.com/kotlin/kotlinx") {
+            name = "KotlinX Bintray"
+        }
     }
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
