@@ -11,8 +11,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     buildFeatures {
@@ -20,7 +20,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.0.0-beta02"
+        kotlinCompilerExtensionVersion = "1.0.0-beta03"
     }
 }
 
@@ -30,5 +30,5 @@ dependencies {
 
     // Compose
     implementation(AndroidX.compose.material)
-    implementation("dev.chrisbanes.accompanist", "accompanist-insets", "_")
+    implementation("com.google.accompanist", "accompanist-insets", "_")
 }

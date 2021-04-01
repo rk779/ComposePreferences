@@ -1,18 +1,16 @@
 buildscript {
-
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:7.0.0-alpha10")
+        classpath("com.android.tools.build:gradle:7.0.0-alpha12")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.31")
     }
 }
 
 allprojects {
-
     repositories {
         google()
         mavenCentral()
@@ -30,8 +28,6 @@ allprojects {
     }
 }
 
-tasks {
-    val clean by registering(Delete::class) {
-        delete(buildDir)
-    }
+tasks.register("clean", Delete::class) {
+    delete(rootProject.buildDir)
 }

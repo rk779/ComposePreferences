@@ -15,8 +15,7 @@ import androidx.compose.ui.unit.dp
 import de.schnettler.datastore.compose.model.BasePreferenceItem
 import de.schnettler.datastore.compose.model.BasePreferenceItem.PreferenceGroup
 import de.schnettler.datastore.compose.model.BasePreferenceItem.PreferenceItem
-import de.schnettler.datastore.compose.ui.GroupHeader
-import dev.chrisbanes.accompanist.insets.statusBarsPadding
+import com.google.accompanist.insets.statusBarsPadding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalMaterialApi
