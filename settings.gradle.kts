@@ -1,11 +1,9 @@
 import de.fayard.refreshVersions.bootstrapRefreshVersions
 
-rootProject.name = "ComposePreferences"
-
 include(":datastore:compose")
 include(":datastore:manager")
 include(":app")
-
+rootProject.name = "ComposePreferences"
 
 buildscript {
     repositories {
