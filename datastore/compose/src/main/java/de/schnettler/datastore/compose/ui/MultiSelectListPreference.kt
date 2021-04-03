@@ -12,10 +12,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import de.schnettler.datastore.compose.model.BasePreferenceItem.PreferenceItem.CheckBoxListPreferenceItem
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalMaterialApi
-@ExperimentalCoroutinesApi
 @Composable
 internal fun MultiSelectListPreference(
     item: CheckBoxListPreferenceItem,
@@ -24,12 +22,12 @@ internal fun MultiSelectListPreference(
 ) {
     val showDialog = remember { mutableStateOf(false) }
     val closeDialog = { showDialog.value = false }
-    val descripion = item.entries.filter { values.contains(it.key) }.map { it.value }
+    val description = item.entries.filter { values.contains(it.key) }.map { it.value }
         .joinToString(separator = ", ", limit = 3)
 
     Preference(
         item = item,
-        summary = if (descripion.isNotBlank()) descripion else null,
+        summary = if (description.isNotBlank()) description else null,
         onClick = { showDialog.value = true }
     )
 

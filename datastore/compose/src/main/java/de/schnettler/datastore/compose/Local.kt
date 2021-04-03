@@ -2,13 +2,10 @@ package de.schnettler.datastore.compose
 
 import androidx.compose.runtime.*
 import de.schnettler.datastore.manager.DataStoreManager
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-@ExperimentalCoroutinesApi
 val LocalDataStoreManager: ProvidableCompositionLocal<DataStoreManager> =
     compositionLocalOf(structuralEqualityPolicy()) { error("No preferences found") }
 
-@ExperimentalCoroutinesApi
 @Composable
 fun ProvideDataStoreManager(
     dataStoreManager: DataStoreManager,

@@ -1,5 +1,6 @@
 package de.schnettler.datastore.compose
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
@@ -16,20 +17,22 @@ import de.schnettler.datastore.compose.model.BasePreferenceItem
 import de.schnettler.datastore.compose.model.BasePreferenceItem.PreferenceGroup
 import de.schnettler.datastore.compose.model.BasePreferenceItem.PreferenceItem
 import com.google.accompanist.insets.statusBarsPadding
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalMaterialApi
-@ExperimentalCoroutinesApi
 @Composable
 fun PreferenceScreen(
     items: List<BasePreferenceItem>,
     modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(0.dp),
     statusBarPadding: Boolean = false,
 ) {
     val dataStore = LocalDataStoreManager.current
     val prefs by dataStore.preferenceFlow.collectAsState(initial = null)
 
-    LazyColumn(modifier = modifier) {
+    LazyColumn(
+        modifier = modifier,
+        contentPadding = contentPadding
+    ) {
         if (statusBarPadding) {
             item { Spacer(modifier = Modifier.statusBarsPadding()) }
         }

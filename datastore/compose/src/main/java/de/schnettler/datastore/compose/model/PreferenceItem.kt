@@ -3,7 +3,7 @@ package de.schnettler.datastore.compose.model
 import androidx.compose.runtime.Composable
 import de.schnettler.datastore.manager.PreferenceMetaData
 
-sealed class BasePreferenceItem() {
+sealed class BasePreferenceItem {
     abstract val title: String
     abstract val enabled: Boolean
 

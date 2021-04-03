@@ -14,10 +14,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import de.schnettler.datastore.compose.model.BasePreferenceItem.PreferenceItem.SeekBarPreferenceItem
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalMaterialApi
-@ExperimentalCoroutinesApi
 @Composable
 internal fun SeekBarPreference(
     item: SeekBarPreferenceItem,
