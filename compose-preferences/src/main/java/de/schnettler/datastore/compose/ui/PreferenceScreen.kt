@@ -1,5 +1,6 @@
 package de.schnettler.datastore.compose.ui
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
@@ -26,6 +27,7 @@ fun PreferenceScreen(
     items: List<Preference>,
     dataStore: DataStore<Preferences>,
     modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(0.dp),
     statusBarPadding: Boolean = false,
     withGroupDivider: Boolean = false
 ) {
@@ -36,6 +38,7 @@ fun PreferenceScreen(
     PreferenceScreen(
         items = items,
         modifier = modifier,
+        contentPadding = contentPadding,
         dataStoreManager = dataStoreManager,
         statusBarPadding = statusBarPadding,
         withGroupDivider = withGroupDivider
@@ -48,12 +51,17 @@ fun PreferenceScreen(
 fun PreferenceScreen(
     items: List<Preference>,
     modifier: Modifier = Modifier,
+    contentPadding: PaddingValues,
     dataStoreManager: DataStoreManager,
     statusBarPadding: Boolean = false,
     withGroupDivider: Boolean = false
 ) {
     val prefs by dataStoreManager.preferenceFlow.collectAsState(initial = null)
-    LazyColumn(modifier = modifier) {
+
+    LazyColumn(
+        modifier = modifier,
+        contentPadding = contentPadding
+    ) {
         if (statusBarPadding) {
             item { Spacer(modifier = Modifier.statusBarsPadding()) }
         }
