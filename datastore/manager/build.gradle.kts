@@ -40,7 +40,7 @@ afterEvaluate {
                 artifact(sourcesJar.get())
                 artifactId = "preferences-datastore"
                 groupId = "com.github.rk779.ComposePreferences"
-                version = "1.0.2"
+                version = "1.0.3"
             }
         }
     }
