@@ -15,6 +15,7 @@ import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import de.schnettler.datastore.compose.model.Preference.PreferenceItem.MultiSelectListPreference
@@ -40,8 +41,11 @@ internal fun MultiSelectListPreferenceWidget(
         AlertDialog(
             onDismissRequest = { showDialog(!isDialogShown) },
             title = { Text(text = preference.title) },
-            text = {
-                Column {
+            buttons = {
+                Column(
+                    modifier = Modifier
+                        .padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 16.dp)
+                ) {
                     preference.entries.forEach { current ->
                         val isSelected = values.contains(current.key)
                         val onSelectionChanged = {
@@ -51,17 +55,18 @@ internal fun MultiSelectListPreferenceWidget(
                             }
                             onValuesChange(result)
                         }
-                        Row(Modifier
-                            .fillMaxWidth()
-                            .selectable(
-                                selected = isSelected,
-                                onClick = { onSelectionChanged() }
-                            )
-                            .padding(16.dp)
+                        Row(
+                            modifier = Modifier.fillMaxWidth()
+                                .selectable(
+                                    selected = isSelected,
+                                    onClick = { onSelectionChanged() }
+                                )
+                                .padding(16.dp)
                         ) {
-                            Checkbox(checked = isSelected, onCheckedChange = {
-                                onSelectionChanged()
-                            })
+                            Checkbox(
+                                checked = isSelected,
+                                onCheckedChange = { onSelectionChanged() }
+                            )
                             Text(
                                 text = current.value,
                                 style = MaterialTheme.typography.body1.merge(),
@@ -69,14 +74,13 @@ internal fun MultiSelectListPreferenceWidget(
                             )
                         }
                     }
-                }
-            },
-            confirmButton = {
-                TextButton(
-                    onClick = { showDialog(!isDialogShown) },
-                    colors = ButtonDefaults.textButtonColors(contentColor = MaterialTheme.colors.secondary),
-                ) {
-                    Text(text = "Select")
+                    TextButton(
+                        onClick = { showDialog(!isDialogShown) },
+                        colors = ButtonDefaults.textButtonColors(contentColor = MaterialTheme.colors.secondary),
+                        modifier = Modifier.align(alignment = Alignment.End)
+                    ) {
+                        Text(text = "Select")
+                    }
                 }
             }
         )

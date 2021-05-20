@@ -36,21 +36,24 @@ internal fun ListPreferenceWidget(
         AlertDialog(
             onDismissRequest = { showDialog(!isDialogShown) },
             title = { Text(text = preference.title) },
-            text = {
-                Column {
+            buttons = {
+                Column(
+                    modifier = Modifier
+                        .padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 16.dp)
+                ) {
                     preference.entries.forEach { current ->
                         val isSelected = value == current.key
                         val onSelected = {
                             onValueChange(current.key)
                             showDialog(!isDialogShown)
                         }
-                        Row(Modifier
-                            .fillMaxWidth()
-                            .selectable(
-                                selected = isSelected,
-                                onClick = { if (!isSelected) onSelected() }
-                            )
-                            .padding(16.dp)
+                        Row(
+                            modifier = Modifier.fillMaxWidth()
+                                .selectable(
+                                    selected = isSelected,
+                                    onClick = { if (!isSelected) onSelected() }
+                                )
+                                .padding(16.dp)
                         ) {
                             RadioButton(
                                 selected = isSelected,
@@ -64,8 +67,7 @@ internal fun ListPreferenceWidget(
                         }
                     }
                 }
-            },
-            confirmButton = { }
+            }
         )
     }
 }
