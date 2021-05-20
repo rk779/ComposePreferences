@@ -7,7 +7,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.datastore.core.DataStore
@@ -18,10 +22,8 @@ import de.schnettler.datastore.compose.model.Preference
 import de.schnettler.datastore.compose.model.Preference.PreferenceGroup
 import de.schnettler.datastore.compose.model.Preference.PreferenceItem
 import de.schnettler.datastore.manager.DataStoreManager
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalMaterialApi
-@ExperimentalCoroutinesApi
 @Composable
 fun PreferenceScreen(
     items: List<Preference>,
@@ -46,7 +48,6 @@ fun PreferenceScreen(
 }
 
 @ExperimentalMaterialApi
-@ExperimentalCoroutinesApi
 @Composable
 fun PreferenceScreen(
     items: List<Preference>,

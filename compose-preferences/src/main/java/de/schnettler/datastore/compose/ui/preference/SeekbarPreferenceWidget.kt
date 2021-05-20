@@ -8,31 +8,32 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Slider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import de.schnettler.datastore.compose.model.Preference.PreferenceItem.SeekBarPreference
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalMaterialApi
-@ExperimentalCoroutinesApi
 @Composable
 internal fun SeekBarPreferenceWidget(
     preference: SeekBarPreference,
     value: Float,
     onValueChange: (Float) -> Unit,
 ) {
-    val currentValue = remember(value) { mutableStateOf(value) }
+    var currentValue by remember(value) { mutableStateOf(value) }
+
     TextPreferenceWidget(
         preference = preference,
         summary = {
             PreferenceSummary(
                 preference = preference,
-                sliderValue = currentValue.value,
-                onValueChange = { currentValue.value = it },
-                onValueChangeEnd = { onValueChange(currentValue.value) }
+                sliderValue = currentValue,
+                onValueChange = { currentValue = it },
+                onValueChangeEnd = { onValueChange(currentValue) }
             )
         },
     )

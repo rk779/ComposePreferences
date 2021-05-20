@@ -5,37 +5,40 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectable
-import androidx.compose.material.*
+import androidx.compose.material.AlertDialog
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Checkbox
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import de.schnettler.datastore.compose.model.Preference.PreferenceItem.MultiSelectListPreference
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalMaterialApi
-@ExperimentalCoroutinesApi
 @Composable
 internal fun MultiSelectListPreferenceWidget(
     preference: MultiSelectListPreference,
     values: Set<String>,
     onValuesChange: (Set<String>) -> Unit
 ) {
-    val showDialog = remember { mutableStateOf(false) }
-    val closeDialog = { showDialog.value = false }
+    val (isDialogShown, showDialog) = remember { mutableStateOf(false) }
     val description = preference.entries.filter { values.contains(it.key) }.map { it.value }
         .joinToString(separator = ", ", limit = 3)
 
     TextPreferenceWidget(
         preference = preference,
         summary = if (description.isNotBlank()) description else null,
-        onClick = { showDialog.value = true }
+        onClick = { showDialog(!isDialogShown) }
     )
 
-    if (showDialog.value) {
+    if (isDialogShown) {
         AlertDialog(
-            onDismissRequest = { closeDialog() },
+            onDismissRequest = { showDialog(!isDialogShown) },
             title = { Text(text = preference.title) },
             text = {
                 Column {
@@ -70,7 +73,7 @@ internal fun MultiSelectListPreferenceWidget(
             },
             confirmButton = {
                 TextButton(
-                    onClick = { closeDialog() },
+                    onClick = { showDialog(!isDialogShown) },
                     colors = ButtonDefaults.textButtonColors(contentColor = MaterialTheme.colors.secondary),
                 ) {
                     Text(text = "Select")

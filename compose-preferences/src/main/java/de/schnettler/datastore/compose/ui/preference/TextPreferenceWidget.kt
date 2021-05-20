@@ -1,7 +1,9 @@
 package de.schnettler.datastore.compose.ui.preference
 
 import androidx.compose.foundation.clickable
-import androidx.compose.material.*
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.ListItem
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import de.schnettler.datastore.compose.LocalPreferenceEnabledStatus
@@ -17,6 +19,7 @@ internal fun TextPreferenceWidget(
     trailing: @Composable (() -> Unit)? = null
 ) {
     val isEnabled = LocalPreferenceEnabledStatus.current && preference.enabled
+
     StatusWrapper(enabled = isEnabled) {
         ListItem(
             text = {
@@ -28,7 +31,7 @@ internal fun TextPreferenceWidget(
             secondaryText = { Text(text = summary ?: preference.summary) },
             icon = preference.icon,
             modifier = Modifier.clickable(onClick = { if (isEnabled) onClick() }),
-            trailing = trailing,
+            trailing = trailing
         )
     }
 }
@@ -42,6 +45,7 @@ fun TextPreferenceWidget(
     trailing: @Composable (() -> Unit)? = null
 ) {
     val isEnabled = LocalPreferenceEnabledStatus.current && preference.enabled
+
     StatusWrapper(enabled = isEnabled) {
         ListItem(
             text = {
@@ -53,7 +57,7 @@ fun TextPreferenceWidget(
             secondaryText = summary,
             icon = preference.icon,
             modifier = Modifier.clickable(onClick = { if (isEnabled) onClick() }),
-            trailing = trailing,
+            trailing = trailing
         )
     }
 }
