@@ -32,7 +32,7 @@ afterEvaluate {
                 // You can then customize attributes of the publication as shown below.
                 groupId = "de.schnettler.composePreferences"
                 artifactId = "datastore-manager"
-                version = "1.0.5"
+                version = "1.1.0"
             }
         }
     }
